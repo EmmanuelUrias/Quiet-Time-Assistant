@@ -41,7 +41,11 @@ const Assistant: React.FC = () => {
         Submit
       </Button>
       <Box sx={{
-        textAlign: 'left'
+        textAlign: 'left',
+        backgroundColor: 'white',
+        borderRadius: '12px',
+        padding: '2rem',
+        marginTop: '2rem'
       }}>
       {response && (
         <ParseResEngine response={response} />

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Box, TextField, Button, Typography } from '@mui/material';
+import { Box, TextField, Button } from '@mui/material';
+import ParseResEngine from './ParseResEngine';
 
 const Assistant: React.FC = () => {
   const [inputValue, setInputValue] = useState<string>('');
@@ -15,16 +16,15 @@ const Assistant: React.FC = () => {
   };
 
   const sendPromptToGPT = async (prompt: string): Promise<string> => {
-    // Replace this with your actual API call to the custom GPT
-    const response = await fetch('https://your-gpt-api-endpoint.com', {
+    const response = await fetch('http://127.0.0.1:5000/send_message', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ prompt }),
+      body: JSON.stringify({ 'message': prompt }),
     });
     const data = await response.json();
-    return data.response; // Adjust according to your API response structure
+    return data.response;
   };
 
   return (
@@ -40,11 +40,13 @@ const Assistant: React.FC = () => {
       <Button variant="contained" color="primary" onClick={handleSubmit}>
         Submit
       </Button>
+      <Box sx={{
+        textAlign: 'left'
+      }}>
       {response && (
-        <Typography variant="body1" sx={{ mt: '2rem', backgroundColor: 'white', padding: '1rem', borderRadius: '4px' }}>
-          {response}
-        </Typography>
+        <ParseResEngine response={response} />
       )}
+      </Box>
     </Box>
   );
 };

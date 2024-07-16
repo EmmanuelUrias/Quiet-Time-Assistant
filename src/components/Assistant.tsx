@@ -16,7 +16,7 @@ const Assistant: React.FC = () => {
   };
 
   const sendPromptToGPT = async (prompt: string): Promise<string> => {
-    const response = await fetch('http://127.0.0.1:5000/send_message', {
+    const response = await fetch('https://pklqotlaz5.execute-api.us-east-1.amazonaws.com/production/send_message', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

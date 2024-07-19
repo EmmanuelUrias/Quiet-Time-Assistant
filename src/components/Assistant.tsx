@@ -10,7 +10,7 @@ const Assistant: React.FC = () => {
   const [isRequestInProgress, setIsRequestInProgress] = useState<boolean>(false);
 
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInputValue(event.target.value);
   };
 

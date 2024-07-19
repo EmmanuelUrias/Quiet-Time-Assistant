@@ -45,7 +45,7 @@ const Assistant: React.FC = () => {
   return (
     <ThemeProvider theme={colorTheme}>
       <CssBaseline />
-      <Box sx={{ backgroundColor: 'background.default', minHeight: '95vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', p: 2, mt: '4rem' }}>
+      <Box sx={{ backgroundColor: 'background.default', minHeight: '95vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', p: 2, mt: '2rem' }}>
         <Box sx={{
           backgroundColor: 'background.paper',
           width: '120%',

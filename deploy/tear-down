@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+STACK_NAME="qta-s3Bucket-stack"
+
+aws cloudformation delete-stack --stack-name $STACK_NAME

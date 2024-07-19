@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+set -e
+
+echo "== Deploying S3 bucket for Quiet Time Assistant =="
+
+# Create the CloudFormation stack
+STACK_NAME="qta-s3Bucket-stack"
+TEMPLATE_FILE="template.yaml"
+
+aws cloudformation create-stack --stack-name $STACK_NAME --template-body file://$TEMPLATE_FILE --capabilities CAPABILITY_NAMED_IAM
+
+echo "== Waiting for stack creation to complete =="
+aws cloudformation wait stack-create-complete --stack-name $STACK_NAME
+
+# Query the bucket name from the stack outputs
+BUCKET_NAME=$(aws cloudformation describe-stacks --stack-name $STACK_NAME --query "Stacks[0].Outputs[?OutputKey=='WebsiteURL'].OutputValue" --output text)
+
+echo "== S3 bucket name: $BUCKET_NAME =="
+
+# Sync the build directory to the S3 bucket
+aws s3 sync ../dist/ s3://$BUCKET_NAME
+
+echo "== Deployment complete =="
+
+
